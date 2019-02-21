@@ -40,7 +40,7 @@ library SafeMath {
  to a wallet
  * as they arrive.
  */
-interface token { function transfer(address receiver, uint amount) external ; }
+contract token { function transfer(address receiver, uint amount) public ; }
 
 contract Ownable {
   address public owner;
@@ -99,7 +99,7 @@ contract Crowdsale is Ownable {
   uint256 public maxPurchase = 1000 ether;
   uint256 public minPurchase = 10 finney;
 
-  token tokenInstance;
+  token public tokenInstance;
 
   // amount of raised money in wei
   //uint256 public weiRaised;
@@ -136,7 +136,7 @@ contract Crowdsale is Ownable {
   }
 
   function changeWallet(address payable _wallet) external onlyOwner {
-  	wallet = _wallet;
+    wallet = _wallet;
   }
 
   function changeMaxPurchase(uint _newMax) external onlyOwner {
